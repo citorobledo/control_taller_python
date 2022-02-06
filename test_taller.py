@@ -32,7 +32,8 @@ class TestTaller(unittest.TestCase):
     def test_TiempoFueraDeServicio(self):
         maq.fechaFueraDeServicio = date(2022, 1, 10)
         a = maq.tiempoFueraDeServicio()
-        self.assertTrue(a == 26)
+        b = date.today() - maq.fechaFueraDeServicio
+        self.assertTrue(a == b.days)
 
     def test_PonerOperativa(self):
         maq.operativa = False
@@ -41,8 +42,7 @@ class TestTaller(unittest.TestCase):
         self.assertTrue(maq.operativa)
         self.assertTrue(len(maq.registroDeReparacines) == 1)
         self.assertTrue(
-            maq.registroDeReparacines.pop(0) == "2022-02-05" + " la maquina estuvo fuera de servicio: " + str(
-                maq.tiempoFueraDeServicio))
+            maq.registroDeReparacines[0] == str(date.today()) + " la maquina estuvo fuera de servicio: " + str(maq.tiempoFueraDeServicio))
 
 
 if __name__ == '__main__':

@@ -6,8 +6,8 @@ class Maquina:
                  marca="",
                  modelo="",
                  horas=0,
-                 operativa=bool,
                  horasUltimoCambioAceite=0,
+                 operativa=True,
                  ):
         registroDeReparacines = []
         self.registroDeReparacines = registroDeReparacines
