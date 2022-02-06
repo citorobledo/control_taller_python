@@ -8,7 +8,8 @@ class Maquina:
                  horas=0,
                  operativa=bool,
                  horasUltimoCambioAceite=0,
-                 registroDeReparacines = []):
+                 ):
+        registroDeReparacines = []
         self.registroDeReparacines = registroDeReparacines
         self.fechaFueraDeServicio = None
         self.marca = marca
@@ -33,4 +34,4 @@ class Maquina:
     def ponerOperativa(self):
         self.operativa = True
         self.registroDeReparacines.append(
-            str(date.today()) + " la maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio) )
+            str(date.today()) + " la maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio))
