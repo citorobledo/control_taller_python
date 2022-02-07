@@ -1,15 +1,19 @@
 import unittest
+from unittest.mock import MagicMock, Mock
 from datetime import date
 
+import every as every
+import returns as returns
+
 from Maquina import Maquina
+from Taller import Taller
 
 maq = Maquina("Toro", "RM 5410", 234, True)
+taller = Taller()
 
-
-class TestTaller(unittest.TestCase):
+class TestMaquina(unittest.TestCase):
 
     def test_Caracteristicas(self):
-        # self.assertEqual(True, False)
         self.assertTrue(maq.marca == "Toro")  # add assertion here
         self.assertTrue(maq.modelo == "RM 5410")
         self.assertTrue(maq.horas == 234)
@@ -43,6 +47,20 @@ class TestTaller(unittest.TestCase):
         self.assertTrue(len(maq.registroDeReparacines) == 1)
         self.assertTrue(
             maq.registroDeReparacines[0] == str(date.today()) + " la maquina estuvo fuera de servicio: " + str(maq.tiempoFueraDeServicio))
+
+class TestTaller(unittest.TestCase):
+
+    def test_caracteristicas(self):
+        taller.baldesDeAceiteEnMes = 5
+        self.assertTrue(taller.baldesDeAceiteEnMes == 5)
+        self.assertTrue(taller.maquinas == [])
+        self.assertTrue(taller.maquinasEnReparacion == [])
+        self.assertTrue(taller.repuestos == [])
+
+    def test_ingresarMaquina(self):
+
+        taller.ingresarMaquina()
+
 
 
 if __name__ == '__main__':

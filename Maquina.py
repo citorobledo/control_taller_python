@@ -25,7 +25,8 @@ class Maquina:
     def ultimoCambioAceite(self):
         return self.horasUltimoCambioAceite
 
-    def modificarHoras(self, nuevasHoras): self.horas = nuevasHoras
+    def modificarHoras(self, nuevasHoras):
+        self.horas = nuevasHoras
 
     def tiempoFueraDeServicio(self):
         a = date.today() - self.fechaFueraDeServicio
@@ -35,3 +36,15 @@ class Maquina:
         self.operativa = True
         self.registroDeReparacines.append(
             str(date.today()) + " la maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio))
+
+    def infoMaquina(self):
+        if self.operativa:
+            a = "Si"
+        else:
+            a = "No"
+        return str(
+            "Marca: " + self.marca + "\n" +
+            "Modelo: " + self.modelo + "\n" +
+            "Esta operativa: " + a + "\n" +
+            "Horas: " + str(self.horas) + "\n" +
+            "Ultimo cambio de aceite: " + str(self.horasUltimoCambioAceite) + " Horas" + "\n")
