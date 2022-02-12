@@ -1,5 +1,4 @@
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import dill
 import main
 from Taller import *
 from Maquina import *
@@ -7,6 +6,7 @@ from Maquina import *
 taller = Taller()
 a = int
 maquina = Maquina()
+
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -24,28 +24,40 @@ def opciones():
 
 def listarMaquinas():
     for i in range(len(taller.maquinas)):
-        a =taller.maquinas[i]
-        print(f"{i+1}: " + a.modelo )
+        maq = taller.maquinas[i]
+        print(f"{i + 1}: " + maq.modelo)
     print("")
 
 
-def opcionesResponden(numero):
+def guardarMaquinas():
+    with open('maquinas_dill.pkl', 'wb') as file:
+        for i in range(len(taller.maquinas)):
+            dill.dump(taller.maquinas[i], file)
 
+
+def cargarMaquinas():
+    with open('maquinas_dill.pkl', 'rb') as file:
+        while file.peek():
+            taller.maquinas.append(dill.load(file))
+
+
+def opcionesResponden(numero):
     if numero == 0:
+        guardarMaquinas()
         main.a = 0
     elif numero == 1:
         return taller.ingresarMaquina()
     elif numero == 2:
         listarMaquinas()
         a = int(input("seleccionar maquina: "))
-        main.maquina = taller.maquinas[a-1]
+        main.maquina = taller.maquinas[a - 1]
         print(f"seleccionaste: {main.maquina.modelo}\n")
     elif numero == 3:
         print("\n" + main.maquina.infoMaquina())
 
 
 if __name__ == '__main__':
-
+    cargarMaquinas()
     while main.a != 0:
         opciones()
         opcionesResponden(int(input("ingrese opcion: ")))

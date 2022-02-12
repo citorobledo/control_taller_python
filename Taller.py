@@ -17,8 +17,7 @@ class Taller:
         self.baldesDeAceiteTotales += cantidad
 
     def ingresarMaquina(self):
-        marca, modelo, horas, horasAceite = input("ingrese marca: "), input("ingrese modelo: "), input(
-            "ingrese horas: "), input("horas ultimo cambio de aceite: ")
+        marca, modelo, horas, horasAceite = input("ingrese marca: "), input("ingrese modelo: "), \
+                                            input("ingrese horas: "), input("horas ultimo cambio de aceite: ")
         print("\n")
         self.maquinas.append(Maquina(marca, modelo, horas, horasUltimoCambioAceite=horasAceite))
-

@@ -1,10 +1,5 @@
 import unittest
-from unittest.mock import MagicMock, Mock
 from datetime import date
-
-import every as every
-import returns as returns
-
 from Maquina import Maquina
 from Taller import Taller
 
