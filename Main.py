@@ -12,9 +12,11 @@ def opciones():
         "1 para ingresar maquina\n"
         "2 para seleccionar maquina\n"
         "3 para saber caracteristicas\n"
+        "4 poner a reparar maquina\n"
+        "5 poner maquna operativa\n"
         "0 para salir\n"
     )
-
+    guardarMaquinas()
 
 def listarMaquinas():
     for i in range(len(taller.maquinas)):
@@ -38,17 +40,24 @@ def cargarMaquinas():
 def opcionesResponden(numero):
     if numero == 0:
         guardarMaquinas()
-        return 0
     elif numero == 1:
         return taller.ingresarMaquina()
     elif numero == 2:
         listarMaquinas()
         num = int(input("seleccionar maquina: "))
         Main.maq = taller.maquinas[num - 1]
-        print(f"seleccionaste: {Main.maq.modelo}\n")
+        print(f"- seleccionaste: {Main.maq.modelo} -\n")
         return
     elif numero == 3:
+        print("--------- INFO DE LA MAQUINA ----------")
         print("\n" + Main.maq.infoMaquina())
+        print("----------------------------------------")
+    elif numero == 4:
+        Main.maq.ponerAReparar()
+        print(f"- Maquina {Main.maq.modelo} en reparacion -\n")
+    elif numero == 5:
+        Main.maq.ponerOperativa()
+        print(f"- la maquina {Main.maq.modelo} ahora esta operativa -\n")
 
 
 if __name__ == '__main__':
