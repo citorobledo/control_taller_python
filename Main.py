@@ -1,16 +1,10 @@
 import dill
-import main
+import Main
 from Taller import *
 from Maquina import *
 
+maq = Maquina()
 taller = Taller()
-a = int
-maquina = Maquina()
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'hola, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 
 def opciones():
@@ -24,8 +18,8 @@ def opciones():
 
 def listarMaquinas():
     for i in range(len(taller.maquinas)):
-        maq = taller.maquinas[i]
-        print(f"{i + 1}: " + maq.modelo)
+        maqui = taller.maquinas[i]
+        print(f"{i + 1}: " + maqui.modelo)
     print("")
 
 
@@ -44,22 +38,25 @@ def cargarMaquinas():
 def opcionesResponden(numero):
     if numero == 0:
         guardarMaquinas()
-        main.a = 0
+        return 0
     elif numero == 1:
         return taller.ingresarMaquina()
     elif numero == 2:
         listarMaquinas()
-        a = int(input("seleccionar maquina: "))
-        main.maquina = taller.maquinas[a - 1]
-        print(f"seleccionaste: {main.maquina.modelo}\n")
+        num = int(input("seleccionar maquina: "))
+        Main.maq = taller.maquinas[num - 1]
+        print(f"seleccionaste: {Main.maq.modelo}\n")
+        return
     elif numero == 3:
-        print("\n" + main.maquina.infoMaquina())
+        print("\n" + Main.maq.infoMaquina())
 
 
 if __name__ == '__main__':
+    opcion = int
     cargarMaquinas()
-    while main.a != 0:
+    while opcion != 0:
         opciones()
-        opcionesResponden(int(input("ingrese opcion: ")))
+        opcion = int(input("ingrese opcion: "))
+        opcionesResponden(opcion)
 
 # input()  # para que no se cierre la ventana agrego un input() y antes se le puede poner un "presione enter para terminar"
