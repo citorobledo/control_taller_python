@@ -8,8 +8,10 @@ class Maquina:
                  horas=0,
                  horasUltimoCambioAceite=0,
                  operativa=True,
+                 cambiosDeAceite = [""]
                  ):
         registroDeReparacines = []
+        self.cambiosDeAceite = cambiosDeAceite
         self.registroDeReparacines = registroDeReparacines
         self.fechaFueraDeServicio = None
         self.marca = marca
@@ -18,12 +20,18 @@ class Maquina:
         self.operativa = operativa
         self.horasUltimoCambioAceite = horasUltimoCambioAceite
 
+
     def ponerAReparar(self):
         self.operativa = False
         self.fechaFueraDeServicio = date.today()  # importa el dia del sistema
 
     def ultimoCambioAceite(self):
-        return self.horasUltimoCambioAceite
+        return self.cambiosDeAceite[-1]
+
+    def hacerCambioDeAceite(self, horasMauina:int):
+        self.horas = horasMauina
+        self.cambiosDeAceite.append(f"a las {horasMauina} horas, el {date.today()}")
+
 
     def modificarHoras(self, nuevasHoras):
         self.horas = nuevasHoras
@@ -39,12 +47,12 @@ class Maquina:
 
     def infoMaquina(self):
         if self.operativa:
-            a = "Si"
+            a = "SI"
         else:
-            a = "No"
+            a = "NO"
         return str(
             "Marca: " + self.marca + "\n" +
             "Modelo: " + self.modelo + "\n" +
             "Esta operativa: " + a + "\n" +
             "Horas: " + str(self.horas) + "\n" +
-            "Ultimo cambio de aceite: " + str(self.horasUltimoCambioAceite) + " Horas" + "\n")
+            "Ultimo cambio de aceite: " + str(self.ultimoCambioAceite()) + "\n")

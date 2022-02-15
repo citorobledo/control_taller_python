@@ -14,6 +14,8 @@ def opciones():
         "3 para saber caracteristicas\n"
         "4 poner a reparar maquina\n"
         "5 poner maquna operativa\n"
+        "6 hacer cambio de aceite\n"
+        "7 eliminar maquina\n"
         "0 para salir\n"
     )
     guardarMaquinas()
@@ -41,7 +43,9 @@ def opcionesResponden(numero):
     if numero == 0:
         guardarMaquinas()
     elif numero == 1:
-        return taller.ingresarMaquina()
+        taller.ingresarMaquina()
+        print("ingresaste correctamente la mauina:\n")
+
     elif numero == 2:
         listarMaquinas()
         num = int(input("seleccionar maquina: "))
@@ -49,7 +53,7 @@ def opcionesResponden(numero):
         print(f"- seleccionaste: {Main.maq.modelo} -\n")
         return
     elif numero == 3:
-        print("--------- INFO DE LA MAQUINA ----------")
+        print("--------- INFO DE LA MAQUINA -----------")
         print("\n" + Main.maq.infoMaquina())
         print("----------------------------------------")
     elif numero == 4:
@@ -58,6 +62,14 @@ def opcionesResponden(numero):
     elif numero == 5:
         Main.maq.ponerOperativa()
         print(f"- la maquina {Main.maq.modelo} ahora esta operativa -\n")
+    elif numero == 6:
+        Main.maq.hacerCambioDeAceite(int(input("¿cuantas horas tiene la mauina?: \n")))
+        print("se registro el cambio de aceite\n")
+    elif numero == 7:
+        a = input(f"¿estas seguro que vas a eliminar {Main.maq.modelo}?\n 1: para Si\n 2: para No\n")
+        if a == "1":
+            taller.eliminarMaquina(Main.maq)
+            print(f"eliminaste {Main.maq.modelo}: \n")
 
 
 if __name__ == '__main__':

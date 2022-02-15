@@ -21,3 +21,8 @@ class Taller:
                                             input("ingrese horas: "), input("horas ultimo cambio de aceite: ")
         print("\n")
         self.maquinas.append(Maquina(marca, modelo, horas, horasUltimoCambioAceite=horasAceite))
+        maq = self.maquinas[-1]
+        maq.hacerCambioDeAceite(int(horasAceite))
+
+    def eliminarMaquina(self, maquina):
+        self.maquinas.remove(maquina)

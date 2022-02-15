@@ -20,8 +20,8 @@ class TestMaquina(unittest.TestCase):
         self.assertTrue(maq.fechaFueraDeServicio == date.today())
 
     def test_ConsultarUltimoCambioAceite(self):
-        maq.horasUltimoCambioAceite = 134
-        self.assertTrue(maq.horasUltimoCambioAceite == 134)
+        maq.cambiosDeAceite[-1] = 134
+        self.assertTrue(maq.ultimoCambioAceite() == 134)
 
     def test_CambiarHoras(self):
         maq.modificarHoras(500)
