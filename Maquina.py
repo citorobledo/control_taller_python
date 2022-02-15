@@ -8,9 +8,9 @@ class Maquina:
                  horas=0,
                  horasUltimoCambioAceite=0,
                  operativa=True,
-                 cambiosDeAceite = [""]
+                 cambiosDeAceite=list(),
+                 registroDeReparacines = list()
                  ):
-        registroDeReparacines = []
         self.cambiosDeAceite = cambiosDeAceite
         self.registroDeReparacines = registroDeReparacines
         self.fechaFueraDeServicio = None
@@ -20,7 +20,6 @@ class Maquina:
         self.operativa = operativa
         self.horasUltimoCambioAceite = horasUltimoCambioAceite
 
-
     def ponerAReparar(self):
         self.operativa = False
         self.fechaFueraDeServicio = date.today()  # importa el dia del sistema
@@ -28,10 +27,9 @@ class Maquina:
     def ultimoCambioAceite(self):
         return self.cambiosDeAceite[-1]
 
-    def hacerCambioDeAceite(self, horasMauina:int):
+    def hacerCambioDeAceite(self, horasMauina: int):
         self.horas = horasMauina
         self.cambiosDeAceite.append(f"a las {horasMauina} horas, el {date.today()}")
-
 
     def modificarHoras(self, nuevasHoras):
         self.horas = nuevasHoras
@@ -42,8 +40,8 @@ class Maquina:
 
     def ponerOperativa(self):
         self.operativa = True
-        self.registroDeReparacines.append(
-            str(date.today()) + " la maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio))
+        self.registroDeReparacines.append(str(date.today()) + " la maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio()) + " dias")
+        print(self.registroDeReparacines)
 
     def infoMaquina(self):
         if self.operativa:

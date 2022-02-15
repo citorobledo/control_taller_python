@@ -4,9 +4,9 @@ from Maquina import Maquina
 class Taller:
     def __init__(self,
                  baldesDeAceiteTotales=0,
-                 maquinas=[],
-                 maquinasEnReparacion=[],
-                 repuestos=[]
+                 maquinas=list(),
+                 maquinasEnReparacion=list(),
+                 repuestos=list()
                  ):
         self.maquinas = maquinas
         self.maquinasEnReparacion = maquinasEnReparacion

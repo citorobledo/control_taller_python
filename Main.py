@@ -13,9 +13,10 @@ def opciones():
         "2 para seleccionar maquina\n"
         "3 para saber caracteristicas\n"
         "4 poner a reparar maquina\n"
-        "5 poner maquna operativa\n"
+        "5 poner maquina operativa\n"
         "6 hacer cambio de aceite\n"
         "7 eliminar maquina\n"
+        "8 historial de reparaciones\n"
         "0 para salir\n"
     )
     guardarMaquinas()
@@ -34,9 +35,9 @@ def guardarMaquinas():
 
 
 def cargarMaquinas():
-    with open('maquinas_dill.pkl', 'rb') as file:
-        while file.peek():
-            taller.maquinas.append(dill.load(file))
+    with open('maquinas_dill.pkl', 'rb') as fileMaquina:
+        while fileMaquina.peek():
+            taller.maquinas.append(dill.load(fileMaquina))
 
 
 def opcionesResponden(numero):
@@ -51,7 +52,6 @@ def opcionesResponden(numero):
         num = int(input("seleccionar maquina: "))
         Main.maq = taller.maquinas[num - 1]
         print(f"- seleccionaste: {Main.maq.modelo} -\n")
-        return
     elif numero == 3:
         print("--------- INFO DE LA MAQUINA -----------")
         print("\n" + Main.maq.infoMaquina())
@@ -70,6 +70,11 @@ def opcionesResponden(numero):
         if a == "1":
             taller.eliminarMaquina(Main.maq)
             print(f"eliminaste {Main.maq.modelo}: \n")
+    elif numero == 8:
+        print("Registro de reparaciones: \n")
+        for i in range(len(Main.maq.registroDeReparacines)):
+            print(Main.maq.registroDeReparacines[i])
+        print("\n")
 
 
 if __name__ == '__main__':
