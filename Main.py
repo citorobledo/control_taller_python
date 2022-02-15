@@ -71,10 +71,10 @@ def opcionesResponden(numero):
             taller.eliminarMaquina(Main.maq)
             print(f"eliminaste {Main.maq.modelo}: \n")
     elif numero == 8:
-        print("Registro de reparaciones: \n")
+        print("----- REGISTRO DE REPARACIONES ----- \n")
         for i in range(len(Main.maq.registroDeReparacines)):
             print(Main.maq.registroDeReparacines[i])
-        print("\n")
+        print("\n------------------------------------")
 
 
 if __name__ == '__main__':
