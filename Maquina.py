@@ -41,7 +41,6 @@ class Maquina:
     def ponerOperativa(self):
         self.operativa = True
         self.registroDeReparacines.append(str(date.today()) + " la maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio()) + " dias")
-        print(self.registroDeReparacines)
 
     def infoMaquina(self):
         if self.operativa:
