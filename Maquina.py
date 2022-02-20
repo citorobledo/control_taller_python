@@ -39,8 +39,9 @@ class Maquina:
         return a.days
 
     def ponerOperativa(self):
+        reparacion = input("Que trabajo se le realizo a la maquina? : ")
         self.operativa = True
-        self.registroDeReparacines.append(str(date.today()) + " la maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio()) + " dias")
+        self.registroDeReparacines.append(f"\nInforme: Fecha: {str(date.today())}\n{reparacion}\nla maquina estuvo fuera de servicio: " + str(self.tiempoFueraDeServicio()) + " dias")
 
     def infoMaquina(self):
         if self.operativa:
