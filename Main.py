@@ -1,5 +1,6 @@
 import dill
 import Main
+import json
 from Taller import *
 from Maquina import *
 
@@ -17,6 +18,7 @@ def opciones():
         "6 hacer cambio de aceite\n"
         "7 eliminar maquina\n"
         "8 historial de reparaciones\n"
+        "9 registrar reparaión\n"
         "0 para salir\n"
     )
     guardarMaquinas()
@@ -33,11 +35,19 @@ def guardarMaquinas():
         for i in range(len(taller.maquinas)):
             dill.dump(taller.maquinas[i], file)
 
+    #with open("registro.json", "w") as fileJson:
+    #    for i in range(len(taller.maquinas)):
+    #        json.dump(taller.maquinas[i], fileJson)
+
 
 def cargarMaquinas():
     with open('maquinas_dill.pkl', 'rb') as fileMaquina:
         while fileMaquina.peek():
             taller.maquinas.append(dill.load(fileMaquina))
+
+    #with open('registro.json', 'r') as fileMaquina:
+    #    while fileMaquina.peek():
+    #        taller.maquinas.append(dill.load(fileMaquina))
 
 
 def opcionesResponden(numero):
@@ -75,7 +85,9 @@ def opcionesResponden(numero):
         for i in range(len(Main.maq.registroDeReparacines)):
             print(Main.maq.registroDeReparacines[i])
         print("\n------------------------------------")
-
+    elif numero == 9:
+        Main.maq.registrarReparacion()
+        print("La reparación fué registrada\n")
 
 if __name__ == '__main__':
     opcion = int
