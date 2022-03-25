@@ -1,3 +1,6 @@
+import os
+import platform
+
 import dill
 import Main
 import json
@@ -22,6 +25,7 @@ def opciones():
         "0 para salir\n"
     )
     guardarMaquinas()
+
 
 def listarMaquinas():
     for i in range(len(taller.maquinas)):
@@ -89,12 +93,21 @@ def opcionesResponden(numero):
         Main.maq.registrarReparacion()
         print("La reparación fué registrada\n")
 
+def limpiarConsola():
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
 if __name__ == '__main__':
     opcion = int
     cargarMaquinas()
     while opcion != 0:
         opciones()
         opcion = int(input("ingrese opcion: "))
+        limpiarConsola()
         opcionesResponden(opcion)
 
 # input()  # para que no se cierre la ventana agrego un input() y antes se le puede poner un "presione enter para terminar"
+# para generar el .exe PS "C:\Users\cito\PycharmProjects\proyecto 1> pyinstaller main.py"
